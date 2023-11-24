@@ -1,0 +1,49 @@
+[Results]
+q-Factor = 0.051042
+Focus Area[µm^2] = 2.278125
+
+[Parameters]
+Calibration = 0.112500
+Energy[J] = 10.000000
+Size of region[px] = 2
+#of Areas = 1
+Target Point X = 0.000000
+Target Point Y = 0.000000
+Width Method = "FWHM"
+
+[Parameters.ROI]
+GlobalRectangle.0 = 109
+GlobalRectangle.1 = 1
+GlobalRectangle.2 = 1524
+GlobalRectangle.3 = 1460
+
+[Parameters.ROIContour.0]
+ID = 0
+Type = 4
+Coordinate.0 = 109
+Coordinate.1 = 1
+Coordinate.2 = 1331
+Coordinate.3 = 1001
+
+[Parameters.ROIContour.1]
+ID = 0
+Type = 3
+Coordinate.0 = 680
+Coordinate.1 = 1388
+Coordinate.2 = 1524
+Coordinate.3 = 1460
+
+[DisplaySettings]
+Threshold = 0.000000E+0
+TCrossX = 0.000000E+0
+TCrossY = 0.000000E+0
+
+[CameraSettings]
+Camera = "Camera"
+Vendor = "Vendor"
+Model = "Model"
+
+[Image Preprocessing ]
+Stretch X  = 1.000000
+Flip V = FALSE
+Flip H = FALSE

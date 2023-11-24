@@ -1,0 +1,62 @@
+[Results]
+Max Fluence[J/cm^2] = 1,053047
+Max. F Area Left = 680
+Max. F Area Top = 460
+Max. F Area Right = 690
+Max. F Area Bottom = 470
+
+[Parameters]
+Calibration = 99,999997
+Energy[J] = 10,000000
+Size of region[px] = 10
+#of Areas = 1
+Target Point X = 0,000000
+Target Point Y = 0,000000
+
+[Parameters.ROI]
+GlobalRectangle.0 = 337
+GlobalRectangle.1 = 130
+GlobalRectangle.2 = 1119
+GlobalRectangle.3 = 935
+
+[Parameters.ROIContour.0]
+ID = 0
+Type = 4
+Coordinate.0 = 337
+Coordinate.1 = 130
+Coordinate.2 = 1119
+Coordinate.3 = 935
+
+[DisplaySettings]
+Threshold = 0,000000E+0
+TCrossX = 0,000000E+0
+TCrossY = 0,000000E+0
+
+[CameraSettings]
+Camera = "Nahfeldd LLDiagnostik"
+Vendor = "Allied Vision Technologies"
+Model = "Manta_G-145B (E0020006)"
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoAdjustTol = 5,000000
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoAlg = 0
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoMax = 500000,000000
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoMin = 43,000000
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoOutliers = 0,000000
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoRate = 100,000000
+Camera Attributes::Controls::Exposure::ExposureAutoControl::ExposureAutoTarget = 50,000000
+Camera Attributes::Controls::Exposure::ExposureAuto = 1
+Camera Attributes::Controls::Exposure::ExposureMode = 1
+Camera Attributes::Controls::Exposure::ExposureTimeAbs = 250,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoAdjustTol = 5,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoMax = 33,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoMin = 0,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoOutliers = 0,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoRate = 100,000000
+Camera Attributes::Controls::Gain::GainAutoControl::GainAutoTarget = 100,000000
+Camera Attributes::Controls::Gain::GainAuto = 1
+Camera Attributes::Controls::Gain::GainRaw = 0,000000
+Camera Attributes::Controls::Gain::GainSelector = 0
+
+[Image Preprocessing ]
+Stretch X  = 1,000000
+Flip V = FALSE
+Flip H = FALSE

@@ -1,0 +1,19 @@
+[Parameters]
+Calibration = 0,000000
+Target Point X = 0,000000
+Target Point Y = 0,000000
+
+[DisplaySettings]
+Threshold = 0,000000E+0
+TCrossX = 0,000000E+0
+TCrossY = 0,000000E+0
+
+[CameraSettings]
+Camera = "Camera"
+Vendor = "Vendor"
+Model = "Model"
+
+[Image Preprocessing ]
+Stretch X  = 1,000000
+Flip V = FALSE
+Flip H = FALSE

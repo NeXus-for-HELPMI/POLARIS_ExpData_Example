@@ -1,0 +1,33 @@
+[Parameters]
+Calibration = 0,000000
+Target Point X = 0,000000
+Target Point Y = 0,000000
+
+[Parameters.ROI]
+GlobalRectangle.0 = 540
+GlobalRectangle.1 = 648
+GlobalRectangle.2 = 620
+GlobalRectangle.3 = 736
+
+[Parameters.ROIContour.0]
+ID = 0
+Type = 4
+Coordinate.0 = 540
+Coordinate.1 = 648
+Coordinate.2 = 620
+Coordinate.3 = 736
+
+[DisplaySettings]
+Threshold = 0,000000E+0
+TCrossX = 0,000000E+0
+TCrossY = 0,000000E+0
+
+[CameraSettings]
+Camera = "Camera"
+Vendor = "Vendor"
+Model = "Model"
+
+[Image Preprocessing ]
+Stretch X  = 1,000000
+Flip V = FALSE
+Flip H = FALSE
