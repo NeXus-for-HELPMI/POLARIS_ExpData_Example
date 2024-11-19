@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from shutil import copyfile
 import h5py as h5
 import openpmd_api as opmd
 
@@ -12,7 +13,6 @@ import openpmd_api as opmd
 src = "ShotContainer.hdf5"
 target = "ShotContainer_openpmd.h5"
 
-from shutil import copyfile
 
 copyfile(src, target)
 
@@ -52,7 +52,19 @@ with h5.File(target, "r+") as f:
     for field in ["GCCD", "MCP", "Nearfield", "Farfield", "Probe1", "Probe2", "Transmission"]:
         init_mesh(field)
 
+
+def print_hierarchy(obj, indent=""):
+    for key in obj:
+        print("{}{}".format(indent, key))
+        print_hierarchy(obj[key], "\t" + indent)
+    meshes = obj.as_container_of_meshes()
+    if len(meshes) > 0:
+        for key in meshes:
+            print("{}[Mesh] {}".format(indent, key))
+
+
 series = opmd.Series(target, opmd.Access.read_write)
+print_hierarchy(series.iterations[1])
 # # Now specify the correct metadata with openPMD
 series.iterations[1].meshes["GCCD"].grid_spacing = [0.01, 0.01]
 series.close()
