@@ -21,6 +21,7 @@ series = opmd.Series(target, opmd.Access.append)
 # , """iteration_encoding = "variable_based" """
 
 series.openPMD_extension = 0
+series.meshes_path = ["meshes/", "/nexus_data/%/data/"]
 series.write_iterations()[1]
 series.close()
 
@@ -29,40 +30,30 @@ with h5.File(target, "r+") as f:
     openpmd_data = f["data"]["1"]
     openpmd_data["nexus_data"] = f["shot_001"]
 
-# Reopen in openPMD, openPMD now sees the NeXus data and can use it
+    openpmd_data.create_group("meshes")
+
+    def init_mesh(name):
+        mesh = openpmd_data["nexus_data"][name]["data"]["image"]
+        dim = len(mesh.shape)
+        attrs = mesh.attrs
+        attrs["geometry"] = "cartesian"
+        attrs["dataOrder"] = "R"
+        attrs["axisLabels"] = ["x", "y"] if dim == 2 else ["x"]
+        attrs["unitDimension"] = [0, 0, 0, 0, 0, 0, 0]
+        attrs["unitSI"] = 1
+        attrs["gridUnitSI"] = 1
+        attrs["gridSpacing"] = [1 for _ in range(dim)]
+        attrs["position"] = [0.5 for _ in range(dim)]
+        attrs["gridGlobalOffset"] = [0 for _ in range(dim)]
+        attrs["timeOffset"] = 0
+
+        openpmd_data["meshes"][name] = mesh
+
+    for field in ["GCCD", "MCP", "Nearfield", "Farfield", "Probe1", "Probe2", "Transmission"]:
+        init_mesh(field)
+
 series = opmd.Series(target, opmd.Access.read_write)
-iteration = series.iterations[1]
-
-
-def print_hierarchy(obj, indent=""):
-    for key in obj:
-        print("{}{}".format(indent, key))
-        print_hierarchy(obj[key], "\t" + indent)
-
-
-def copy_field(name):
-    field_o = iteration.meshes[name]
-    field_i = iteration["nexus_data"][name]["data"].as_container_of_datasets()["image"]
-
-    field_o.reset_dataset(opmd.Dataset(field_i.dtype, field_i.shape))
-    field_o.axis_labels = ["x", "y"]
-    field_o.unit_dimension = {opmd.Unit_Dimension.M: 1, opmd.Unit_Dimension.T: -1}
-    field_o.grid_global_offset = [0, 0]
-    field_o.grid_spacing = [1, 1]
-    field_o.grid_unit_SI = 1
-    field_o.position = [0.5, 0.5]
-    field_o.unit_SI = 1
-
-    # copy data for now, far goal: use links in openPMD
-
-    # read data
-    chunk = field_i[:, :]
-    series.flush()
-
-    # write data
-    field_o[:, :] = chunk[:, :]
-    series.flush()
-
-
-for field in ["GCCD", "MCP", "Nearfield", "Probe1", "Probe2", "Transmission"]:
-    copy_field(field)
+# # Now specify the correct metadata with openPMD
+series.iterations[1].meshes["GCCD"].grid_spacing = [0.01, 0.01]
+series.close()
+# and so on
