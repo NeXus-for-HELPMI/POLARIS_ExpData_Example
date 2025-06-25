@@ -22,7 +22,10 @@ series = opmd.Series(target, opmd.Access.append)
 
 series.openPMD_extension = 0
 series.meshes_path = ["meshes/", "/nexus_data/%/data/"]
-series.write_iterations()[1]
+# punx will show an error even on /data/1/
+# when not defining it as an NXcollection
+series.write_iterations()[1].set_attribute("NX_class", "NXcollection")
+series.write_iterations().set_attribute("NX_class", "NXcollection")
 series.close()
 
 # Now link the NeXus data into the openPMD structure
